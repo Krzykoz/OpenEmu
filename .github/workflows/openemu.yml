@@ -22,7 +22,7 @@ jobs:
           xcode-version: ^15.1
       - name: Build OpenEmu
         working-directory: ${{github.workspace}}
-        run: xcodebuild -workspace "OpenEmu.xcworkspace" -scheme "OpenEmu" -configuration Release -sdk macosx -arch x86_64 -derivedDataPath DerivedData
+        run: xcodebuild -workspace "OpenEmu.xcworkspace" -scheme "OpenEmu" -configuration Release -sdk macosx -arch x86_64 -arch arm64 -derivedDataPath DerivedData
       - name: Remove code signature
         working-directory: ${{github.workspace}}/DerivedData/Build/Products/Release/
         run: codesign --remove-signature OpenEmu.app
@@ -31,7 +31,7 @@ jobs:
         run: zip -y -r OpenEmu.zip OpenEmu.app
       - name: Build OpenEmu Experimental
         working-directory: ${{github.workspace}}
-        run: xcodebuild -workspace "OpenEmu.xcworkspace" -scheme "OpenEmu (Experimental)" -configuration Release -sdk macosx -arch x86_64 -derivedDataPath DerivedData
+        run: xcodebuild -workspace "OpenEmu.xcworkspace" -scheme "OpenEmu (Experimental)" -configuration Release -sdk macosx -arch x86_64 -arch arm64 -derivedDataPath DerivedData
       - name: Remove code signature
         working-directory: ${{github.workspace}}/DerivedData/Build/Products/Release/
         run: codesign --remove-signature OpenEmu.app
